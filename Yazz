@@ -9,7 +9,9 @@ local rs = game:GetService("ReplicatedStorage")
 
 -- Whitelist check with instant kick
 if not table.find(whitelistedUsers, player.Name) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/GodlikeXH3LL/SLH/refs/heads/main/Yazz"))()
+    player:Kick("Not Whitelisted L")
+    return
+end
 
 print("✅ ID " .. player.Name .. " allowed. Loading the script...")
 
@@ -427,7 +429,7 @@ local function farmRocks(neededDurabilityValue)
         if character and player.Durability.Value >= neededDurabilityValue then
             for _, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                 if v.Name == "neededDurability" and v.Value == neededDurabilityValue then
-                    if character:FindFirstChild("LeftHand") and character:FindFirstChild("RightHand") then
+                    if character and character:FindFirstChild("LeftHand") and character:FindFirstChild("RightHand") then
                         -- Interact with the rock using both hands
                         firetouchinterest(v.Parent.Rock, character.RightHand, 0)
                         firetouchinterest(v.Parent.Rock, character.RightHand, 1)
@@ -570,10 +572,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("TinyIslandRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 0 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 0 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -594,10 +596,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("StarterIslandRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 100 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 100 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -618,10 +620,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("LegendBeachRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 5000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 5000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -629,16 +631,6 @@ local Toggle = Tabs.AutoFarm:CreateToggle("LegendBeachRock", {
         end
     end
 })
-
-function gettool()
-    for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-        if v.Name == "Punch" and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-            game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-        end
-    end
-    game:GetService("Players").LocalPlayer.muscleEvent:FireServer("punch", "leftHand")
-    game:GetService("Players").LocalPlayer.muscleEvent:FireServer("punch", "rightHand")
-end
 
 local Toggle = Tabs.AutoFarm:CreateToggle("FrostGymRock", {
     Title = "Farm Frost Gym Rock",
@@ -652,10 +644,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("FrostGymRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 150000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 150000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -676,10 +668,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("MythicalGymRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 400000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 400000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -700,10 +692,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("EternalGymRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 750000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 750000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -724,10 +716,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("LegendGymRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 1000000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 1000000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -748,10 +740,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("MuscleKingGymRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 5000000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 5000000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -772,10 +764,10 @@ local Toggle = Tabs.AutoFarm:CreateToggle("AncientJungleRock", {
             if game:GetService("Players").LocalPlayer.Durability.Value >= 10000000 then
                 for i, v in pairs(game:GetService("Workspace").machinesFolder:GetDescendants()) do
                     if v.Name == "neededDurability" and v.Value == 10000000 and game.Players.LocalPlayer.Character:FindFirstChild("LeftHand") and game.Players.LocalPlayer.Character:FindFirstChild("RightHand") then
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.RightHand, 1)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 0)
-                        firetouchinterest(v.Parent.Rock, game:GetService("Players").LocalPlayer.Character.LeftHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.RightHand, 1)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 0)
+                        firetouchinterest(v.Parent.Rock, game.Players.LocalPlayer.Character.LeftHand, 1)
                         gettool()
                     end
                 end
@@ -800,8 +792,8 @@ local function autoLift()
 end
 
 local function teleportAndStart(machineName, position)
-    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = position
+    if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = position
         task.wait(.1)
         pressE()
         autoLift()
@@ -847,7 +839,7 @@ local workoutPositions = {
         ["Mythical Gym"] = CFrame.new(2489.21484, 3.67686629, 849.051025),
         ["Legend Gym"] = CFrame.new(4532, 1023, -4003),
         ["Muscle King Gym"] = CFrame.new(-8773, 50, -5664),
-        ["Jungle Gym"] = CFrame.new(-8678.05566, 14.5030098, 2089.25977) -- Fixed syntax
+        ["Jungle Gym"] = CFrame.new(-8678.05566, 14.5030098, 2089.25977)
     },
     ["Boulder"] = {
         ["Mythical Gym"] = CFrame.new(2667, 46, 1203),
@@ -1039,8 +1031,8 @@ local kingTeleportToggle = Tabs.Reb:CreateToggle("KingTeleport", {
         if Value then
             teleportLoop = task.spawn(function()
                 while task.wait(0) do
-                    if game.Players.LocalPlayer.Character then
-                        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-8646, 17, -5738))
+                    if game:GetService("Players").LocalPlayer.Character then
+                        game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(-8646, 17, -5738))
                     end
                 end
             end)
@@ -1317,7 +1309,7 @@ local Toggle = Tabs.Main:CreateToggle("ToggleName", {
         if Value then
             local currentPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             getgenv().posLock = game:GetService("RunService").Heartbeat:Connect(function()
-                if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentPos
                 end
             end)
@@ -1577,7 +1569,7 @@ local Toggle = Tabs.Killer:AddToggle("Kill Nearby", {
                         radiusVisual.Size = Vector3.new(currentRadius * 2, 0.1, currentRadius * 2)
                         radiusVisual.CFrame = myRoot.CFrame * CFrame.new(0, -2, 0)
                         for _, player in pairs(Players:GetPlayers()) do
-                            if player ~= Players.LocalPlayer and not whitelist[player.Name] then
+                            if player ~= Players.LocalPlayer then
                                 local char = player.Character
                                 local root = char and char:FindFirstChild("HumanoidRootPart")
                                 if root and myRoot then
